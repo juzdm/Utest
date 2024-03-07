@@ -70,3 +70,21 @@ https://www.kernel.org/doc/html/latest/dev-tools/kunit/architecture.html#kunit-t
 ### Android 
 
 https://source.android.com/docs/core/tests/development/atest?hl=zh-cn
+
+##举例
+
+- 硬件依赖
+
+  嵌入式设备一般依赖一些硬件资源，比如某些特有的总线或者设备、硬件接口等等，对这部分进行测试难点较大，所以需要对这部分进行fake，或者基于qemu等模拟器进行测试。
+
+举例 1：
+
+​      Android Automotive os 是android 给车载领域定制的os，Android Automotive 底层通过can总线访问和车控系统进行交互，如果真的对Android Automotive 进行测试，需要有实车环境，要求比较苛刻，所有 Android Automotive 专门基于qemu模拟器提供了一套can总线fake的实现，然后就可以在PC段通过qemu测试 Android Automotive framework和app层的程序。
+
+- 交叉编译
+
+  一般来说，嵌入式使用的是arm平台，host使用的是x86，架构不一样，所以如果需要在host端进行测试，需要添加x86编译支持
+
+举例 2：
+
+​    智能电表终端通过i2c接口与电表通信，读取电表中的数据，其中电表终端进行电表管理、费用计算与统计等模块业务功能复杂，需要进行充分的测试。所以对这部分核心代码进行了重构，保证这部分代码和底层I2c库的接口稳定。然后fake掉i2c库的实现，然后对整个工程添加x86编译工具链的支持，这样就可以在PC端通过gtest框架测试核心逻辑。
