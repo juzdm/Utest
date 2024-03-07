@@ -79,7 +79,7 @@ https://source.android.com/docs/core/tests/development/atest?hl=zh-cn
 
 举例 1：
 
-​      Android Automotive os 是android 给车载领域定制的os，Android Automotive 底层通过can总线访问和车控系统进行交互，如果真的对Android Automotive 进行测试，需要有实车环境，要求比较苛刻，所有 Android Automotive 专门基于qemu模拟器提供了一套can总线fake的实现，然后就可以在PC段通过qemu测试 Android Automotive framework和app层的程序。
+​      Android Automotive os 是android 给车载领域定制的os，Android Automotive 底层通过can总线访问和车控系统进行交互，如果真的对Android Automotive 进行测试，需要有实车环境，要求比较苛刻，所以 Android Automotive 专门基于qemu模拟器提供了一套can总线fake的实现，然后就可以在PC段通过qemu测试 Android Automotive framework和app层的程序。
 
 - 交叉编译
 
